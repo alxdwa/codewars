@@ -1,9 +1,7 @@
 def generate_bc(url, separator)
   links = ['<a href="/">HOME</a>']
-  directories = url.scan(/(?<=\/)[\w-]+(?=\/)/)
-  current_page = url.scan(/(?<=\w\/)(?!www)[\w-]+(?=[\.\?\#]|\z)/)
-  directories += current_page unless current_page[0] == "index"
-  
+  directories = url.scan(/(?<=\w\/)(?!www|index)[\w-]+(?=[\/\.\?\#]|\z)/)
+
   return '<span class="active">HOME</span>' if directories.empty?
   
   directories.each_with_index do |path, i|
@@ -17,7 +15,6 @@ def generate_bc(url, separator)
   
   links.join("#{separator}")
 end
-
 
 def abbreviate(str)
   ignore_words = ["the","of","in","from","by","with","and", "or", "for", "to", "at", "a"]
