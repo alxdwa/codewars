@@ -1,7 +1,6 @@
 class Calc
   def initialize
     @answer = ""
-    @final = 0
   end
 
   NUMS = {
